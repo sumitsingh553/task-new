@@ -20,7 +20,9 @@ pipeline {
     stages {
         stage('Example Stage') {
             steps {
-                sh 'echo "PUBLISH_AT: ${params.PUBLISH_AT}"'
+                sh '''
+                    echo "PUBLISH_AT: ${PUBLISH_AT}"
+                '''
             }
         }
     }
