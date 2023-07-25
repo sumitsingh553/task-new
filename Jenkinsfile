@@ -15,9 +15,10 @@ pipeline {
     )
   }
   stages {
-    stage (calling the argument)
+    stage (calling the argument) {
       steps {
         sh 'echo "PUBLISH_AT:" +params.PUBLISH_AT'
       }
   }
+}
 }
