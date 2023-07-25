@@ -3,7 +3,7 @@ import java.util.TimeZone
 
 def getCurrentDateTime() {
     def sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
-    sdf.timeZone = TimeZone.getTimeZone("Your_Time_Zone_ID") // Replace "Your_Time_Zone_ID" with the desired time zone ID
+    sdf.timeZone = TimeZone.getTimeZone("UTC")
     return sdf.format(new Date())
 }
 
