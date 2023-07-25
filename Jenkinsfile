@@ -3,29 +3,26 @@ import java.util.TimeZone
 
 def getCurrentDateTime() {
     def sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
-    sdf.timeZone = TimeZone.getTimeZone("IST")
+    sdf.timeZone = TimeZone.getTimeZone("Your_Time_Zone_ID") // Replace "Your_Time_Zone_ID" with the desired time zone ID
     return sdf.format(new Date())
 }
 
 pipeline {
     agent any
+    parameters {
+        string(
+            name: 'PUBLISH_AT',
+            defaultValue: getCurrentDateTime(),
+            description: 'Default value is the current date in the format yyyy-MM-dd\'T\'HH:mm:ss',
+            trim: true
+        )
+    }
     stages {
         stage('Example Stage') {
             steps {
-                script {
-                    // Get the current date and time as the default value
-                    def publishAtDate = getCurrentDateTime()
-
-                    // Prompt the user for the value of the PUBLISH_AT parameter
-                    def userInput = input(
-                        id: 'userInput',
-                        message: 'Enter Publish Date and Time:',
-                        parameters: [string(defaultValue: publishAtDate, description: 'Publish Date and Time')]
-                    )
-
-                    // Use the provided value (userInput) for the PUBLISH_AT parameter
-                    echo "PUBLISH_AT: ${userInput}"
-                }
+                sh '''
+                    echo "PUBLISH_AT: ${PUBLISH_AT}"
+                '''
             }
         }
     }
