@@ -10,7 +10,7 @@ pipeline {
     string(
       name: 'PUBLISH_AT',
       defaultValue: publishAtDate,
-      description: 'Default value is current date in the format yyyy-MM-dd\'T'\'HH:mm:ss',
+      description: 'Default value is current date in the format yyyy-MM-dd\'T\'HH:mm:ss',
       trim: true
     )
   }
